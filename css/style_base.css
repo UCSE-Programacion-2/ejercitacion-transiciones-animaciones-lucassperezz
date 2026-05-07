@@ -33,8 +33,6 @@ nav ul {
     display: flex; 
     justify-content: center;
     list-style: none;
-    /* padding: 0px;
-    margin-left: 10px;          NO son necesarias porque usamos flex*/
 }
 nav ul li {
     margin: 20px;
@@ -52,18 +50,20 @@ nav ul li a:before{
     background: var(--decoration-color);
     position:absolute;
     bottom:-10px; 
-    /* alto y ancho=0 */
-    /* transition: ; */
+    left: 0;
+    height: 3px;
+    width: 0;
+    transition: width 0.35s ease;
 }
 nav ul li a:hover::before{
-    /* ancho final */
+    width: 100%;
 }
 
 /* Barra redes */
 .social {
 	position: fixed; 
 	left: 0; 
-	top: calc(50% - 90px); /* Para que quede centrada le decimos que al 50% del alto le reste la mitad del alto de la barra: 16px de la letra + 10 padding-top + 10padding-bottom */
+	top: calc(50% - 90px);
 	z-index: 2000; 
 }
 .social ul {
@@ -71,23 +71,23 @@ nav ul li a:hover::before{
 }
 
 .social ul li a {
-    display: inline-block; /* porque le quiero agregar padding */
+    display: inline-block;
     color:var(--secondary-color);
     background: var(--primary-color);
     padding: 10px 15px;
     text-decoration: none;
-    /* transition: ; */
+    transition: transform 0.3s ease, padding-left 0.3s ease;
 }
 
-.social ul li .icon-facebook {background:#3b5998;} /* Establecemos los colores de cada red social, aprovechando su class */
+.social ul li .icon-facebook {background:#3b5998;}
 .social ul li .icon-twitter {background: #00abf0;}
 .social ul li .icon-instagram {background: #E4405F;}
 .social ul li .icon-whatsapp {background: #25D366;}
 .social ul li .icon-mail {background: #666666;}
 
 .social ul li a:hover{
-    /* transform: ; */
-    /* padding: ; */
+    transform: translateX(8px);
+    padding-left: 22px;
 }
 
 
@@ -113,7 +113,7 @@ nav ul li a:hover::before{
     color:var(--decoration-color);
 }
  
-/* spinner| */
+/* spinner */
 .spinner{
     width: 64px;
     height: 64px;
@@ -121,16 +121,18 @@ nav ul li a:hover::before{
     top: calc(50% - 32px);
     left: calc(50% - 32px);
     border-radius: 50%;
-    z-index: 2
- }
+    z-index: 2;
+}
 .spinner {
     background-color: transparent;
     border-top: 10px solid rgb(188, 202, 66);
     border-right: 10px solid rgb(66,139,202);
     border-bottom: 10px solid rgb(202, 66, 129);
     border-left: 10px solid rgba(66,139,202,.2);
-     /* animation: ; */
- }
-/* keyframes
-    crear la animación con la rotación desde el momento 0 y momento 100
- */
+    animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
